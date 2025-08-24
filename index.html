@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SG Website</title>
+  <meta name="description" content="SG Website — a modern, responsive landing page." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to content</a>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <span class="logo" aria-hidden="true">SG</span>
+        <a class="brand-name" href="#">SG Website</a>
+      </div>
+      <nav class="nav" aria-label="Primary">
+        <a href="#features">Features</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+        <a class="btn btn-sm" href="#get-started">Get Started</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero">
+      <div class="container hero-inner">
+        <h1>Your Simple, Modern Website</h1>
+        <p class="lead">Clean, responsive, and fast — built with semantic HTML and modern CSS. Perfect for portfolios, startups, and landing pages.</p>
+        <div class="cta">
+          <a class="btn" href="#get-started">Get Started</a>
+          <a class="btn btn-ghost" href="#features">Learn More</a>
+        </div>
+      </div>
+      <div class="shape" aria-hidden="true"></div>
+    </section>
+
+    <section id="features" class="section">
+      <div class="container">
+        <h2 class="section-title">Features</h2>
+        <div class="grid features-grid">
+          <article class="card">
+            <h3>Responsive</h3>
+            <p>Looks great on phones, tablets, and desktops with a mobile‑first layout.</p>
+          </article>
+          <article class="card">
+            <h3>Accessible</h3>
+            <p>Built with semantic HTML, focus styles, and color‑contrast friendly palette.</p>
+          </article>
+          <article class="card">
+            <h3>Fast</h3>
+            <p>Minimal dependencies, optimized assets, and CSS variables for theming.</p>
+          </article>
+          <article class="card">
+            <h3>Easy to Host</h3>
+            <p>Works on GitHub Pages, Netlify, or any static host out of the box.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="section section-alt">
+      <div class="container about">
+        <div class="about-text">
+          <h2 class="section-title">About SG Website</h2>
+          <p>SG Website is a lightweight starter you can customize quickly. Drop in your own content, tweak the colors, and publish in minutes.</p>
+          <ul class="checklist">
+            <li>No build tools required</li>
+            <li>Just HTML + CSS</li>
+            <li>Ready for GitHub Pages</li>
+          </ul>
+        </div>
+        <div class="about-card card">
+          <h3>Quick Facts</h3>
+          <dl class="facts">
+            <div><dt>Version</dt><dd>1.0.0</dd></div>
+            <div><dt>License</dt><dd>MIT</dd></div>
+            <div><dt>Made With</dt><dd>HTML & CSS</dd></div>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <section id="get-started" class="section">
+      <div class="container">
+        <h2 class="section-title">Get Started</h2>
+        <ol class="steps">
+          <li>Download these files (<code>index.html</code> and <code>styles.css</code>).</li>
+          <li>Create a new GitHub repo named <strong>sg-website</strong>.</li>
+          <li>Upload both files to the repo root.</li>
+          <li>Enable GitHub Pages (Settings → Pages → Source: <em>main</em> / <em>root</em>).</li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="contact" class="section section-alt">
+      <div class="container contact">
+        <h2 class="section-title">Contact</h2>
+        <form class="contact-form" action="#" method="post" onsubmit="return false" aria-describedby="contact-note">
+          <div class="form-row">
+            <label for="name">Name</label>
+            <input id="name" name="name" type="text" placeholder="Your name" required>
+          </div>
+          <div class="form-row">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" placeholder="you@example.com" required>
+          </div>
+          <div class="form-row">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="4" placeholder="How can we help?" required></textarea>
+          </div>
+          <p id="contact-note" class="contact-note">This demo form does not send emails. Connect it to a service like Formspree or Netlify Forms.</p>
+          <button class="btn" type="submit" aria-label="Submit contact form (demo only)">Send Message</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>© <span id="year"></span> SG Website. All rights reserved.</p>
+      <div class="socials">
+        <a href="#" aria-label="Twitter">Twitter</a>
+        <a href="#" aria-label="Instagram">Instagram</a>
+        <a href="#" aria-label="GitHub">GitHub</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Update year automatically; optional and safe if JS is disabled.
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
