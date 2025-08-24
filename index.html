@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SG Website — Login</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="wrap">
+    <div class="glass">
+      <div class="avatar" aria-hidden="true"></div>
+      <h1 class="title">Welcome back</h1>
+      <p class="subtitle">Sign in to continue</p>
+
+      <form id="authForm" class="form" onsubmit="return false;">
+        <label class="sr-only" for="email">Email</label>
+        <div class="input-row">
+          <span class="icon">✉️</span>
+          <input id="email" type="email" placeholder="Email ID" required />
+        </div>
+
+        <label class="sr-only" for="password">Password</label>
+        <div class="input-row">
+          <span class="icon">🔒</span>
+          <input id="password" type="password" placeholder="Password" required />
+        </div>
+
+        <div class="meta">
+          <label class="checkbox">
+            <input id="remember" type="checkbox" /> Remember me
+          </label>
+          <a class="muted" href="#" onclick="resetPassword()">Forgot password?</a>
+        </div>
+
+        <div class="actions">
+          <button class="btn" onclick="login()">Login</button>
+          <button class="btn btn-ghost" onclick="toggleMode()" id="toggleBtn">Create account</button>
+        </div>
+
+        <div class="or">
+          <span></span><em>or</em><span></span>
+        </div>
+
+        <button class="btn btn-google" onclick="googleSignIn()">
+          <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="" width="18" height="18" />
+          Continue with Google
+        </button>
+
+        <p id="status" class="status" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </main>
+
+  <!-- Firebase (compat) -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

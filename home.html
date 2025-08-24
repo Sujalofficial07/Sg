@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SG Website — Home</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .dashboard {
+      display: grid;
+      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      margin-top: 2rem;
+    }
+    .card {
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: 18px;
+      padding: 1.5rem;
+      text-align: center;
+      color: var(--text);
+      box-shadow: var(--shadow);
+      transform: translateY(20px);
+      opacity: 0;
+      animation: fadeInUp 0.8s forwards;
+    }
+    .card:nth-child(2){animation-delay:0.2s}
+    .card:nth-child(3){animation-delay:0.4s}
+    .card:nth-child(4){animation-delay:0.6s}
+    @keyframes fadeInUp {
+      to {transform:translateY(0); opacity:1;}
+    }
+    .card:hover {transform: scale(1.05); transition: transform 0.2s;}
+    header {
+      display:flex;justify-content:space-between;align-items:center;
+      padding:1rem 0;
+    }
+    .logout {
+      background:#ff5c5c;color:#fff;padding:.5rem 1rem;border:none;
+      border-radius:8px;cursor:pointer;font-weight:600;
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <div class="glass">
+      <header>
+        <h2>Dashboard</h2>
+        <div>
+          <span id="userEmail"></span>
+          <button class="logout" onclick="logout()">Logout</button>
+        </div>
+      </header>
+      <div class="dashboard">
+        <div class="card">📊 Analytics</div>
+        <div class="card">👤 Profile</div>
+        <div class="card">⚙️ Settings</div>
+        <div class="card">📩 Messages</div>
+      </div>
+    </div>
+  </main>
+
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+  <script src="app.js"></script>
+  <script>
+    firebase.auth().onAuthStateChanged(user => {
+      if(!user){
+        window.location.href = 'index.html';
+      }
+    });
+  </script>
+</body>
+</html>
