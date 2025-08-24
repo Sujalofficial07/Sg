@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Shorts Feed</title>
+  <style>
+    body { margin: 0; overflow: hidden; }
+    video { width: 100vw; height: 100vh; object-fit: cover; }
+    .overlay { position: absolute; bottom: 20px; left: 20px; color: white; }
+  </style>
+</head>
+<body>
+  <div id="feed"></div>
+
+  <script type="module">
+    import { db } from "./app.js";
+    import { collection, query, orderBy, getDocs } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+    async function loadVideos() {
+      const q = query(collection(db, "videos"), orderBy("createdAt", "desc"));
+      const snap = await getDocs(q);
+
+      const feed = document.getElementById("feed");
+      feed.innerHTML = "";
+
+      snap.forEach((doc) => {
+        const data = doc.data();
+        const container = document.createElement("div");
+        container.style.position = "relative";
+
+        const video = document.createElement("video");
+        video.src = data.videoUrl;
+        video.controls = false;
+        video.autoplay = true;
+        video.loop = true;
+
+        const overlay = document.createElement("div");
+        overlay.className = "overlay";
+        overlay.innerHTML = `<b>${data.title || "Untitled"}</b>`;
+
+        container.appendChild(video);
+        container.appendChild(overlay);
+        feed.appendChild(container);
+      });
+    }
+
+    loadVideos();
+  </script>
+</body>
+</html>
