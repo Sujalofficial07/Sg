@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Upload Short</title>
+</head>
+<body>
+  <h2>Upload a Short</h2>
+  <input type="file" id="videoInput" accept="video/*">
+  <button id="uploadBtn">Upload</button>
+
+  <script type="module">
+    import { auth, storage, db } from "./app.js";
+    import { ref, uploadBytesResumable, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
+    import { collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+    document.getElementById("uploadBtn").addEventListener("click", () => {
+      const file = document.getElementById("videoInput").files[0];
+      if (!file) return alert("Select a video first!");
+
+      const user = auth.currentUser;
+      if (!user) return alert("Login required");
+
+      const storageRef = ref(storage, `videos/${user.uid}/${file.name}`);
+      const uploadTask = uploadBytesResumable(storageRef, file);
+
+      uploadTask.on("state_changed", 
+        (snapshot) => console.log("Progress:", (snapshot.bytesTransferred / snapshot.totalBytes) * 100, "%"),
+        (error) => alert(error.message),
+        () => {
+          getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
+            await addDoc(collection(db, "videos"), {
+              videoUrl: downloadURL,
+              userId: user.uid,
+              createdAt: serverTimestamp(),
+              likesCount: 0
+            });
+            alert("Upload complete!");
+          });
+        }
+      );
+    });
+  </script>
+</body>
+</html>
